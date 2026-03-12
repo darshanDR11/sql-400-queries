@@ -1,6 +1,6 @@
-# Sakila SQL Practice – 100 Query Project
+# Sakila SQL Practice – 200 Query Project
 
-This project contains **100 SQL practice queries** using the **Sakila Database**.
+This project contains **200 SQL practice queries** using the **Sakila Database**.
 The goal is to cover essential and advanced SQL concepts including filtering, joins, aggregations, subqueries, CTEs, and window functions.
 
 The repository is structured so that anyone can easily understand the database schema, relationships between tables, and the purpose of each query.
