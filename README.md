@@ -5,14 +5,12 @@ This repository contains 400 SQL practice queries organized across multiple real
 ## Databases Used
 
 1. Sakila Movie Rental Database
-2. E-commerce Database
-3. University Database
-4. HR Management Database
+2. E-commerce Database 
+3. HR Management Database
 
 Each database contains:
 - Schema
-- Problem Statements
-- SQL Solutions
+- Problem Statements with SQL Solutions
 
 ## SQL Concepts Covered
 
