@@ -1,234 +1,298 @@
-# Sakila SQL Practice – 200 Query Project
+# SQL Practice – 200 Queries on Sakila Database
 
-This project contains **200 SQL practice queries** using the **Sakila Database**.
-The goal is to cover essential and advanced SQL concepts including filtering, joins, aggregations, subqueries, CTEs, and window functions.
+## Overview
 
-The repository is structured so that anyone can easily understand the database schema, relationships between tables, and the purpose of each query.
+This repository contains **200 structured SQL practice queries** written using the **Sakila Sample Database**.
+The goal of this project is to practice and demonstrate core SQL concepts ranging from **basic SELECT statements to advanced analytical queries**.
+
+All queries are organized logically by topic so learners can gradually move from beginner to advanced SQL.
+
+This project is useful for:
+
+* SQL beginners practicing real database queries
+* Students preparing for technical interviews
+* Learning relational database relationships
+* Understanding complex SQL concepts through real examples
 
 ---
 
 # Database Used
 
-**Sakila Database**
+## Sakila Database
 
-Sakila is a sample database representing a **DVD movie rental store**.
-It contains data about films, actors, customers, rentals, payments, and stores.
+The **Sakila Database** is a sample database originally created by MySQL to simulate a **DVD rental store system**.
 
-The schema models how a real rental business operates.
+It contains multiple interconnected tables representing:
 
----
+* Films
+* Actors
+* Customers
+* Rentals
+* Payments
+* Stores
+* Staff
+* Inventory
+* Locations
 
-# SQL Concepts Covered
-
-The 100 queries in this project cover the following SQL concepts:
-
-• Basic SELECT queries
-• Filtering with WHERE
-• Pattern matching using LIKE
-• Aggregation functions (COUNT, SUM, AVG)
-• GROUP BY and HAVING
-• Multiple table JOINS
-• Subqueries
-• Common Table Expressions (CTE)
-• Window Functions
-• Ranking functions (RANK, DENSE_RANK)
-• PARTITION BY
+The database demonstrates a **real-world relational schema**, making it ideal for SQL practice.
 
 ---
 
-# Repository Structure
+# Database Schema Overview
 
-sakila_database
+Key tables and their purpose:
 
+| Table         | Description                                        |
+| ------------- | -------------------------------------------------- |
+| actor         | Stores actor information                           |
+| film          | Stores film details                                |
+| film_actor    | Many-to-many relationship between films and actors |
+| category      | Film categories                                    |
+| film_category | Mapping between films and categories               |
+| customer      | Customer details                                   |
+| address       | Address information                                |
+| city          | City details                                       |
+| country       | Country details                                    |
+| inventory     | Physical copies of films in stores                 |
+| rental        | Records of film rentals                            |
+| payment       | Payment transactions                               |
+| store         | Store locations                                    |
+| staff         | Store staff members                                |
+| language      | Film language                                      |
+
+---
+
+# Table Relationships
+
+Main relational structure:
+
+```
+country
+   │
+   └── city
+          │
+          └── address
+                 │
+                 ├── customer
+                 ├── staff
+                 └── store
+
+film
+ ├── film_actor ── actor
+ ├── film_category ── category
+ └── inventory
+         │
+         └── rental
+               │
+               └── payment
+```
+
+This schema demonstrates important relational database concepts such as:
+
+* **One-to-Many relationships**
+* **Many-to-Many relationships**
+* **Foreign keys**
+* **Data normalization**
+
+---
+
+# Query Categories
+
+The repository contains **200 SQL queries** divided into the following sections.
+
+## 1. Basic SELECT Queries
+
+Basic data retrieval from tables.
+
+Examples:
+
+* Display all actors
+* Show film titles and release years
+* List customer emails
+
+---
+
+## 2. Filtering Queries
+
+Using conditions to filter records.
+
+Concepts used:
+
+* `WHERE`
+* `LIKE`
+* `BETWEEN`
+* `IN`
+* comparison operators
+
+Examples:
+
+* Films longer than 120 minutes
+* Customers whose name starts with "S"
+* Payments greater than $8
+
+---
+
+## 3. Aggregation Queries
+
+Using aggregate functions to summarize data.
+
+Functions used:
+
+* `COUNT()`
+* `SUM()`
+* `AVG()`
+* `MIN()`
+* `MAX()`
+
+Examples:
+
+* Total number of actors
+* Average film length
+* Total payments received
+
+---
+
+## 4. GROUP BY and HAVING
+
+Grouping records and filtering grouped results.
+
+Concepts used:
+
+* `GROUP BY`
+* `HAVING`
+
+Examples:
+
+* Customers with more than 10 rentals
+* Categories with more than 50 films
+* Films with more than 5 actors
+
+---
+
+## 5. JOIN Queries
+
+Combining data from multiple tables.
+
+Types used:
+
+* `INNER JOIN`
+* `LEFT JOIN`
+* multi-table joins
+
+Examples:
+
+* Films with their categories
+* Customers with full address
+* Rentals with customer details
+
+---
+
+## 6. Subqueries
+
+Queries nested inside another query.
+
+Examples:
+
+* Films with rental rate above average
+* Customers with highest payments
+* Films never rented
+
+---
+
+## 7. CTE (Common Table Expressions)
+
+Temporary result sets used inside queries.
+
+Syntax used:
+
+```
+WITH cte_name AS (
+    SELECT ...
+)
+SELECT * FROM cte_name;
+```
+
+Examples:
+
+* Total revenue per store
+* Customer rental counts
+* Top revenue films
+
+---
+
+## 8. Window Functions
+
+Advanced SQL functions used for ranking and analytics.
+
+Functions used:
+
+* `ROW_NUMBER()`
+* `RANK()`
+* `DENSE_RANK()`
+* `PARTITION BY`
+
+Examples:
+
+* Rank films by rental rate
+* Rank customers by total payments
+* Top films per category
+
+---
+
+# Skills Practiced
+
+This project demonstrates practical usage of:
+
+* SQL Query Writing
+* Database Relationships
+* Data Aggregation
+* Multi-table Joins
+* Analytical Queries
+* Window Functions
+* Query Optimization Thinking
+
+---
+
+# Project Structure
+
+```
+sakila-sql-practice
 │
-├── sakila-schema.sql (database schema)
-├── sakila-data.sql (sample data)
-├── problem_statements.md (100 SQL questions)
-└── solutions.sql (SQL query solutions)
+├── queries.sql
+├── README.md
+└── sakila-database-files
+```
 
 ---
 
-# Main Tables in the Sakila Database
+# Total Queries
 
-The Sakila database contains multiple tables, but the most important ones are listed below.
-
-### Actor
-
-Stores information about actors.
-
-Columns:
-
-* actor_id
-* first_name
-* last_name
-* last_update
-
----
-
-### Film
-
-Contains information about movies available for rent.
-
-Columns include:
-
-* film_id
-* title
-* description
-* release_year
-* rental_rate
-* length
-* rating
+| Category          | Queries         |
+| ----------------- | --------------- |
+| SELECT Queries    | 20              |
+| Filtering         | 20              |
+| Aggregation       | 30              |
+| GROUP BY + HAVING | 20              |
+| JOIN Queries      | 50              |
+| Subqueries        | 20              |
+| CTE               | 20              |
+| Window Functions  | 20              |
+| Total             | **200 Queries** |
 
 ---
 
-### Film_Actor
+# Purpose of This Project
 
-This table connects actors with films.
+This repository was created to:
 
-Purpose:
-A film can have multiple actors, and an actor can appear in multiple films.
-
-Relationship:
-actor → film_actor → film
-
----
-
-### Category
-
-Stores movie genres such as Action, Comedy, Drama, etc.
-
----
-
-### Film_Category
-
-Connects films with categories.
-
-Relationship:
-film → film_category → category
-
----
-
-### Inventory
-
-Represents physical copies of films available in stores.
-
-Relationship:
-film → inventory
-
-A film can have multiple inventory copies.
-
----
-
-### Rental
-
-Stores rental transactions.
-
-Relationship:
-inventory → rental → customer
-
-Each record shows when a film was rented and returned.
-
----
-
-### Payment
-
-Stores payment information for rentals.
-
-Relationship:
-rental → payment
-
-This table tracks the amount paid for each rental.
-
----
-
-### Customer
-
-Stores customer information.
-
-Columns include:
-
-* customer_id
-* first_name
-* last_name
-* email
-* store_id
-
-Customers rent movies from stores.
-
----
-
-### Store
-
-Represents the physical rental stores.
-
-Each store has staff members and customers.
-
----
-
-### Staff
-
-Employees working at stores who process rentals and payments.
-
----
-
-### Address, City, Country
-
-These tables store location information.
-
-Relationship chain:
-
-country → city → address → customer / staff / store
-
----
-
-# Simplified Relationship Flow
-
-The main business flow of the database looks like this:
-
-Film
-↓
-Inventory (copies of films)
-↓
-Rental (customer rents film)
-↓
-Payment (customer pays for rental)
-
-Customer location structure:
-
-Country → City → Address → Customer
-
-Film relationships:
-
-Actor → Film_Actor → Film
-Film → Film_Category → Category
-
----
-
-# Example Business Question
-
-A typical SQL question using this database might be:
-
-"Which customers generated the highest revenue?"
-
-To answer this, we need to join:
-
-Customer → Rental → Payment
-
-This demonstrates how relational databases connect different tables to answer business questions.
-
----
-
-# Goal of This Project
-
-The purpose of this repository is to:
-
-• Practice SQL using a real-world relational schema
-• Understand relationships between tables
-• Improve query writing skills
-• Build a structured SQL portfolio on GitHub
+* Build strong SQL fundamentals
+* Practice complex SQL problems
+* Understand relational database design
+* Create a structured SQL learning resource
 
 ---
 
 # Author
 
 Darshan Dudhat
+IT Student | SQL Learner
